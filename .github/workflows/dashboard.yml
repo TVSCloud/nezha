@@ -44,12 +44,11 @@ jobs:
         run: |
           cp dist/dashboard-linux-arm-7 dist/dashboard-linux-arm
 
-      - name: Log in to the GHCR
-        uses: docker/login-action@master
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
         with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.G_TOKEN }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -76,7 +75,7 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/arm,linux/s390x,linux/riscv64 # linux/386,
           push: true
           tags: |
-            ${{ steps.image-name.outputs.GHRC_IMAGE_NAME }}:${{ steps.extract_branch.outputs.tag }}
+            tvscloud/nezhaplus:${{ steps.extract_branch.outputs.tag }}
 
       - name: Purge jsdelivr cache
         run: |
