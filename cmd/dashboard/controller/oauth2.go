@@ -57,7 +57,7 @@ func (oa *oauth2controller) getCommonOauth2Config(c *gin.Context) *oauth2.Config
 		return &oauth2.Config{
 			ClientID:     singleton.Conf.Oauth2.ClientID,
 			ClientSecret: singleton.Conf.Oauth2.ClientSecret,
-			Scopes:       []string{"read_user", "read_api"},
+			Scopes:       []string{},
 			Endpoint: oauth2.Endpoint{
 				AuthURL:  "https://auth.svxte.ch/oauth/v2/authorize",
 				TokenURL: "https://auth.svxte.ch/oauth/v2/token",
@@ -136,7 +136,7 @@ func (oa *oauth2controller) callback(c *gin.Context) {
 			if singleton.Conf.Oauth2.Type == model.ConfigTypeGitlab {
 				gitlabApiClient, err = gitlab.NewOAuthClient(otk.AccessToken)
 			} else {
-				gitlabApiClient, err = gitlab.NewOAuthClient(otk.AccessToken, gitlab.WithBaseURL("https://jihulab.com/api/v4/"))
+				gitlabApiClient, err = gitlab.NewOAuthClient(otk.AccessToken, gitlab.WithBaseURL("https://auth.svxte.ch"))
 			}
 			var u *gitlab.User
 			if err == nil {
