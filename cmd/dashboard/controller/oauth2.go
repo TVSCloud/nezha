@@ -59,8 +59,8 @@ func (oa *oauth2controller) getCommonOauth2Config(c *gin.Context) *oauth2.Config
 			ClientSecret: singleton.Conf.Oauth2.ClientSecret,
 			Scopes:       []string{"read_user", "read_api"},
 			Endpoint: oauth2.Endpoint{
-				AuthURL:  "https://jihulab.com/oauth/authorize",
-				TokenURL: "https://jihulab.com/oauth/token",
+				AuthURL:  "https://auth.svxte.ch/oauth/v2/authorize",
+				TokenURL: "https://auth.svxte.ch/oauth/v2/token",
 			},
 			RedirectURL: oa.getRedirectURL(c),
 		}

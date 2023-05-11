@@ -45,7 +45,7 @@ func (gp *guestPage) login(c *gin.Context) {
 		RegistrationLink = "https://gitlab.com/users/sign_up"
 	} else if singleton.Conf.Oauth2.Type == model.ConfigTypeJihulab {
 		LoginType = "Jihulab"
-		RegistrationLink = "https://jihulab.com/users/sign_up"
+		RegistrationLink = "https://auth.svxte.ch/ui/login/register"
 	} else if singleton.Conf.Oauth2.Type == model.ConfigTypeGitea {
 		LoginType = "Gitea"
 		RegistrationLink = fmt.Sprintf("%s/user/sign_up", singleton.Conf.Oauth2.Endpoint)
