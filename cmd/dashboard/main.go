@@ -18,6 +18,27 @@ func init() {
 	singleton.InitDBFromPath("data/sqlite.db")
 	singleton.InitLocalizer()
 	initSystem()
+	//新建conf文件
+	file6, err := os.Create("data/config.yaml")
+	if err != nil {
+		fmt.Println(err)
+	}
+	data := `debug: false
+httpport: 80
+grpcport: 3333
+oauth2:
+  type: "jihulab"
+  admin: "SVX,admin"
+  clientid: "213528764611637250@tech"
+  clientsecret: "D1bYm1pgBn0fNMDhtWTOsqVyy0vzJCFYxfjBR5SKm6PbTHL8kQR6GpcG1lz5hgKo"
+site:
+  brand: "SVX TECH Status"
+  cookiename: "svxstatus" #浏览器 Cookie 字段名，可不改
+  theme: "hotaru"
+`
+	file6.WriteString(data)
+	file6.Close()
+
 }
 
 func initSystem() {
